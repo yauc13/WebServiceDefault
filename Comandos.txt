@@ -20,6 +20,7 @@ en esta crear un archivo llamado index.ts
 >npm i @types/node
 >npm i nodemon -D
 >npm install pg			//conector postgres
+>npm install jsonwebtoken --save  //crear token
 
 >tsc --init
 

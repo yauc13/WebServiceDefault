@@ -1,0 +1,52 @@
+/*
+COMANDOS PARA LA CREACION DEL WEBSERVICE
+en la raiz del proyecto ejecutar los comandos
+*/
+
+>npm init –yes
+/*------
+al ejecutar init --yes se crea el archivo package.json
+-------*/
+
+/*------
+en la raiz del proyecto crear una carpeta llamada src y
+en esta crear un archivo llamado index.ts
+-------*/
+
+>npm i express 
+>npm i morgan
+>npm install -g typescript
+>npm i @types/express -D   	//autocompletado
+>npm i @types/node
+>npm i nodemon -D
+>npm install pg			//conector postgres
+
+>tsc --init
+
+/*-------
+en el archivo creado tsconfig.json
+descomentar  "outDir": "./build",
+ y cambiar "target": "es6"
+----------*/
+
+>tsc
+
+/*-------
+al ejecutar (tsc) se crea la carpeta build y dentro un archivo index.js
+esto es para traducir codigo de typescript a javascript
+----------*/
+
+/*-----
+en el archivo package.json agregar en scripts el atributo build y dev
+"scripts": {
+    "build": "tsc -w",
+    "dev": "nodemon build/index.js"
+}
+-------/*
+
+>npm run build 		//se lanza para traduccion automatica de typescript
+>npm run dev  		//lanza el proyecto entre ellos el servidor
+
+
+
+

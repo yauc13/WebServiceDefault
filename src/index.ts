@@ -11,40 +11,24 @@ class Server{
     this.app=express();
     this.config();
     this.routes();
-    this.connectionDb();
+    
     }
 
     config():void{
-        this.app.set('port', process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3000);       
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extended: false})); //necesario para recuperar body del Request
     }
 
-    routes():void{
-
+    routes():void{        
+        this.app.use(require('./routes/generalRoutes'));            
     }
     star():void{
         this.app.listen(this.app.get('port'));
         console.log('servido iniciado y escuchabdo en puerto: '+this.app.get('port'));
     }
 
-    connectionDb(){
-        console.log('entra a conection base de datos');
-        pool.query(Query.SELECT_CONFIG_PARAM,[1])
-        .then((response: { rows: any; }) => {
-            console.log(response.rows);
-            const list = response.rows;
-            var arreglado = list.map( (item: any) => { 
-                return { idConfigurationParam: item.id_configuration_param , idEnterprise : item.id_enterprise }; 
-              });
-              console.log(arreglado);  
-
-        })
-        .catch((err: any) => {
-            console.log(err)
-        })
-        .finally(() => {      
-            pool.end()
-         })                       
-    }
+  
 }
 
 const ser=new Server();

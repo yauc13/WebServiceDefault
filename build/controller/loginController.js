@@ -64,7 +64,7 @@ class LoginController {
             })
                 .finally(() => {
                 console.log('cerrar poool');
-                database_1.default.end();
+                //pool.end()
             });
         });
     }
@@ -83,7 +83,7 @@ class LoginController {
             console.log(err);
         })
             .finally(() => {
-            database_1.default.end();
+            // pool.end()
         });
     }
 }

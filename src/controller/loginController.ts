@@ -61,7 +61,7 @@ public async login(req: Request, res: Response): Promise<any> {
     })
     .finally(() => {
         console.log('cerrar poool')      
-        pool.end()
+        //pool.end()
      }) 
    
 }
@@ -83,7 +83,7 @@ connectionDb(){
         console.log(err)
     })
     .finally(() => {      
-        pool.end()
+       // pool.end()
      })                       
 }
 

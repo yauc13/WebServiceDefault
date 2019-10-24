@@ -11,7 +11,7 @@ class LoginRoutes {
         this.config();
     }
     config() {
-        this.router.post('/', loginController_1.default.login);
+        this.router.post('/loginAuth', loginController_1.default.login);
     }
 }
 exports.default = new LoginRoutes().router;

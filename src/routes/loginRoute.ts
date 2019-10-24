@@ -11,7 +11,7 @@ class LoginRoutes {
 
     config() {
         
-        this.router.post('/', loginController.login);
+        this.router.post('/loginAuth', loginController.login);
         
     }
 

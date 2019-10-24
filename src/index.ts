@@ -11,25 +11,24 @@ class Server{
     this.app=express();
     this.config();
     this.routes();
-    
     }
 
     config():void{
-        this.app.set('port', process.env.PORT || 3000);       
-        this.app.use(express.json());
-        this.app.use(express.urlencoded({extended: false})); //necesario para recuperar body del Request
+        this.app.set('port', process.env.PORT || 3000); 
+        // necesario para recuperar body del Request      
+        this.app.use(express.json()); //parse application/json
+        this.app.use(express.urlencoded({extended: false})); //parse application/x-www-form-urlencoded
     }
 
-    routes():void{        
+    routes():void{         
         this.app.use(require('./routes/generalRoutes'));            
     }
+    
     star():void{
         this.app.listen(this.app.get('port'));
-        console.log('servido iniciado y escuchabdo en puerto: '+this.app.get('port'));
-    }
-
-  
+        console.log('servido iniciado y escuchando en puerto: '+this.app.get('port'));
+    }  
 }
 
-const ser=new Server();
+const ser = new Server();
 ser.star();

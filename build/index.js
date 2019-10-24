@@ -12,15 +12,16 @@ class Server {
     }
     config() {
         this.app.set('port', process.env.PORT || 3000);
-        this.app.use(express_1.default.json());
-        this.app.use(express_1.default.urlencoded({ extended: false })); //necesario para recuperar body del Request
+        // necesario para recuperar body del Request      
+        this.app.use(express_1.default.json()); //parse application/json
+        this.app.use(express_1.default.urlencoded({ extended: false })); //parse application/x-www-form-urlencoded
     }
     routes() {
         this.app.use(require('./routes/generalRoutes'));
     }
     star() {
         this.app.listen(this.app.get('port'));
-        console.log('servido iniciado y escuchabdo en puerto: ' + this.app.get('port'));
+        console.log('servido iniciado y escuchando en puerto: ' + this.app.get('port'));
     }
 }
 const ser = new Server();

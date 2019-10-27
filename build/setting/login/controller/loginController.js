@@ -11,25 +11,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../setting/database"));
-const query_1 = require("../query/query");
-require('../config/config');
+const database_1 = __importDefault(require("../../database"));
+const query_1 = require("../../../query/query");
+require('../../configConstants');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 class LoginController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('entra a login server');
+            console.log('---entra a login server--');
             const body = req.body;
             const passEncode = body.pass;
-            //console.log(body);
+            console.log(body);
             yield database_1.default.query(query_1.Query.LOGIN_USER_PASSWORD, [body.identUser, passEncode])
                 .then((response) => {
                 // console.log('response: ',response);
                 const rs = response.rows;
                 console.log(rs);
                 if (rs <= 0) {
-                    return res.status(400).json({
+                    return res.status(200).json({
                         status: 'FAIL',
                         message: 'usuario o contraseña no encontrado',
                         data: null,

@@ -1,7 +1,5 @@
 
 import express, {Application, application} from 'express';
-import pool from './config/database';
-import { Query } from './query/query'
 
 class Server{
  
@@ -21,7 +19,7 @@ class Server{
     }
 
     routes():void{         
-        this.app.use(require('./routes/generalRoutes'));            
+        this.app.use(require('./generalRoutes'));
     }
     
     star():void{

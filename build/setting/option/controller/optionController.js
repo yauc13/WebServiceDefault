@@ -11,8 +11,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../setting/database"));
-const query_1 = require("../query/query");
+const database_1 = __importDefault(require("../../database"));
+const query_1 = require("../../../query/query");
 const optionDao_1 = __importDefault(require("../dao/optionDao"));
 class OptionController {
     listAllOption(req, res) {
@@ -21,7 +21,7 @@ class OptionController {
             try {
                 const list = yield optionDao_1.default.listAllOption();
                 res.status(200).json({
-                    status: 'SUCCESS',
+                    status: 'success',
                     message: 'lista ',
                     data: list
                 });

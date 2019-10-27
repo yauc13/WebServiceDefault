@@ -17,7 +17,7 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false })); //parse application/x-www-form-urlencoded
     }
     routes() {
-        this.app.use(require('./routes/generalRoutes'));
+        this.app.use(require('./generalRoutes'));
     }
     star() {
         this.app.listen(this.app.get('port'));

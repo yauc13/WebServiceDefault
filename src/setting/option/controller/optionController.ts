@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import pool from '../config/database';
-import { Query } from '../query/query';
+import pool from '../../database';
+import { Query } from '../../../query/query';
 import optionDao from '../dao/optionDao'
 
 
@@ -9,47 +9,24 @@ class OptionController {
 
     public async listAllOption(req: Request, res: Response): Promise<any> {
         console.log('entra a listAllOption');
-        await pool.query(Query.LIST_ALL_OPTION)
-            .then((response: { rows: any; }) => {
-                const rs = response.rows;
-                if (rs <= 0) {
-                    return res.status(200).json({
-                        status: 'SUCCESS',
-                        message: 'LISTA VACIA',
-                        data: rs
-                    });
-                } else {
-                    var list = rs.map((item: any) => {
-                        return {
-                            idOpt: item.id_opt,
-                            nameOpt: item.name_opt,
-                            descOpt: item.desc_opt,
-                            codOpt: item.cod_opt
-                        };
-                    });
-
-                    return res.status(200).json({
-                        status: 'SUCCESS',
-                        message: 'lista ',
-                        data: list
-                    });
-                }
-            })
-            .catch((err: any) => {
-                console.log(err)
-                return res.status(500).json({
-                    status: 'FAIL',
-                    message: 'error respuesta servidor',
-                    data: null
-                });
-
-            })
-            .finally(() => {
-                console.log('cerrar poool')
-                //pool.end()
-            })
+        try {
+            const list = await optionDao.listAllOption();
+            res.status(200).json({
+                status: 'success',
+                message : 'lista ',
+                data: list
+            });
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({
+                status: 'FAIL',
+                message: 'error respuesta servidor',
+                data: null
+            });
+        }    
     }
 
+    
     public async insert(req: Request, res: Response): Promise<any> {
         console.log('entra a insert', req.body);
         const opt = req.body;

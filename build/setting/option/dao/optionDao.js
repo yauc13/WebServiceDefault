@@ -11,8 +11,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../setting/database"));
-const query_1 = require("../query/query");
+const database_1 = __importDefault(require("../../database"));
+const query_1 = require("../../../query/query");
 class OptionDao {
     listAllOption() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -20,7 +20,6 @@ class OptionDao {
             try {
                 const rsw = yield database_1.default.query(query_1.Query.LIST_ALL_OPTION);
                 const rs = rsw.rows;
-                console.log(rs);
                 var list = [];
                 list = rs.map((item) => {
                     return {
@@ -34,6 +33,7 @@ class OptionDao {
             catch (err) {
                 console.log(err);
             }
+            console.log(list);
             return list;
         });
     }

@@ -13,5 +13,10 @@
   */
  process.env.SEED = process.env.SEED || 'seed-server';
 
+process.env.API_URL = '/abatonWebService/apiRest';
+
+
+
+
 
 

@@ -10,7 +10,6 @@ class LoginRoutes {
     }
 
     config() {
-        
         this.router.post('/loginAuth', loginController.login);
         
     }

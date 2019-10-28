@@ -1,9 +1,12 @@
 /*
 COMANDOS PARA LA CREACION DEL WEBSERVICE
 en la raiz del proyecto ejecutar los comandos
+
+--para ejecutar el programa
+>npm run start //previa configuracion en el archivo package.json
 */
 
->npm init –yes
+>npm init ï¿½yes
 /*------
 al ejecutar init --yes se crea el archivo package.json
 -------*/
@@ -21,6 +24,8 @@ en esta crear un archivo llamado index.ts
 >npm i nodemon -D
 >npm install pg			//conector postgres
 >npm install jsonwebtoken --save  //crear token
+>npm install bcrypt  //encriptar 
+>npm i concurrently -D  //ejecutar dos comandos al tiempo
 
 >tsc --init
 
@@ -38,10 +43,12 @@ esto es para traducir codigo de typescript a javascript
 ----------*/
 
 /*-----
-en el archivo package.json agregar en scripts el atributo build y dev
+en el archivo package.json agregar en scripts el atributo build y dev 
+si se tiene la libreria concurrently se puede ejecutar solo start y se ejecuta tanto build como dev
 "scripts": {
     "build": "tsc -w",
-    "dev": "nodemon build/index.js"
+    "dev": "nodemon build/index.js",
+     "start": "concurrently \"tsc -w\" \"nodemon build/index.js\""
 }
 -------/*
 

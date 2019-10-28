@@ -6,28 +6,24 @@ import { SystemOptionValue } from '../../../model/SystemOptionValue';
 class OptionValueDao {
 
  
-    public async listOptionValue(idOpt:  number): Promise<any> {
-        console.log('entra a listAllOption dao');
+    public async listOptionValue(idOpt:  number): Promise<any> { 
         try {
             const rsw = await pool.query(Query.LIST_ALL_OPTION_VALUE,[idOpt]);
             const rs = rsw.rows;
-
             var list = [];         
                 list = rs.map((item: any) => {
-                    return {
-                        idOptVal: item.id_opt,
-                        idOpt: item.id_opt,
-                        nameOptVal: item.name_opt,
-                        descOptVal: item.desc_opt,
-                        codOptVal: item.cod_opt,
-                        stateOptVal: item.state_opt_val
-                    };
+                    const obj:SystemOptionValue = new SystemOptionValue();
+                    obj.idOptVal= item.id_opt_val
+                    obj.idOpt= item.id_opt
+                    obj.nameOptVal= item.name_opt_val
+                    obj.descOptVal= item.desc_opt_val
+                    obj.codOptVal= item.cod_opt_val
+                    return obj;
                 });               
         } catch (err) {           
             console.log(err);
             throw err;
         }
-        console.log(list);
         return list;
     }
 

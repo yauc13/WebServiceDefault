@@ -13,28 +13,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../../database"));
 const query_1 = require("../../../query/query");
+const SystemOption_1 = require("../../../model/SystemOption");
 class OptionDao {
     listAllOption() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('entra a listAllOption dao');
             try {
                 const rsw = yield database_1.default.query(query_1.Query.LIST_ALL_OPTION);
                 const rs = rsw.rows;
                 var list = [];
                 list = rs.map((item) => {
-                    return {
-                        idOpt: item.id_opt,
-                        nameOpt: item.name_opt,
-                        descOpt: item.desc_opt,
-                        codOpt: item.cod_opt
-                    };
+                    const obj = new SystemOption_1.SystemOption();
+                    obj.idOpt = item.id_opt;
+                    obj.nameOpt = item.name_opt;
+                    obj.descOpt = item.desc_opt;
+                    obj.codOpt = item.cod_opt;
+                    return obj;
                 });
             }
             catch (err) {
                 console.log(err);
                 throw err;
             }
-            console.log(list);
             return list;
         });
     }

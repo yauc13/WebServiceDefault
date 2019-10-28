@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
 import pool from '../../database';
 import { Query } from '../../../query/query';
-import optionDao from '../dao/optionDao'
+import optionValueDao from '../dao/optionValueDao'
+import { SystemOptionValue } from '../../../model/SystemOptionValue';
 
 
-class OptionController {
+class OptionValueController {
 
 
     public async listAllOption(req: Request, res: Response): Promise<any> {
         console.log('entra a listAllOption');
         try {
-            const list = await optionDao.listAllOption();
+            const { id } = req.params;            
+            const list = await optionValueDao.listOptionValue(+id);
             res.status(200).json({
                 status: 'success',
                 message : 'lista ',
@@ -30,37 +32,24 @@ class OptionController {
     
     public async insert(req: Request, res: Response): Promise<any> {
         console.log('entra a insert', req.body);
-        const opt = req.body;
-        await pool.query(Query.INSERT_OPTION, [opt.nameOpt, opt.descOpt, opt.codOpt])
-            .then((response: any) => {
-                const rs = response;
-                if (rs <= 0) {
-                    return res.status(200).json({
-                        status: 'SUCCESS',
-                        message: 'insertado vacio',
-                        data: true
-                    });
-                } else {
-                    return res.status(200).json({
+        try {
+        const opt:SystemOptionValue = req.body;
+        const rs: boolean = await optionValueDao.insert(opt);            
+                if (rs) {                
+                     res.status(200).json({
                         status: 'SUCCESS',
                         message: 'insertado correctamente ',
                         data: true
                     });
                 }
-            })
-            .catch((err: any) => {
+            } catch(err){
                 console.log(err)
-                return res.status(500).json({
+                 res.status(500).json({
                     status: 'FAIL',
-                    message: 'error respuesta servidor no insertado',
+                    message: err.toString(),
                     data: false
                 });
-
-            })
-            .finally(() => {
-                console.log('cerrar poool')
-                //pool.end()
-            })
+            }           
     }
 
     public async update(req: Request, res: Response): Promise<any> {
@@ -101,7 +90,7 @@ class OptionController {
     public async delete(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const r: boolean = await optionDao.delete(+id);
+            const r: boolean = await optionValueDao.delete(+id);
             if (r) {
                 res.json({
                     status: 'SUCCESS',
@@ -130,5 +119,5 @@ class OptionController {
 
 
 }
-const optionController = new OptionController;
-export default optionController;
+const optionValueController = new OptionValueController;
+export default optionValueController;

@@ -12,6 +12,7 @@ class LoginRoutes {
     }
     config() {
         this.router.post('/loginAuth', loginController_1.default.login);
+        this.router.post('/verifyTokenAndSection', loginController_1.default.login);
     }
 }
 exports.default = new LoginRoutes().router;

@@ -11,6 +11,7 @@ class LoginRoutes {
 
     config() {
         this.router.post('/loginAuth', loginController.login);
+        this.router.post('/verifyTokenAndSection', loginController.login);
         
     }
 

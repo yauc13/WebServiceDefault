@@ -13,13 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../../database"));
 const query_1 = require("../../../query/query");
-const optionDao_1 = __importDefault(require("../dao/optionDao"));
-class OptionController {
+const optionValueDao_1 = __importDefault(require("../dao/optionValueDao"));
+class OptionValueController {
     listAllOption(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('entra a listAllOption');
             try {
-                const list = yield optionDao_1.default.listAllOption();
+                const { id } = req.params;
+                const list = yield optionValueDao_1.default.listOptionValue(+id);
                 res.status(200).json({
                     status: 'success',
                     message: 'lista ',
@@ -40,37 +41,25 @@ class OptionController {
     insert(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('entra a insert', req.body);
-            const opt = req.body;
-            yield database_1.default.query(query_1.Query.INSERT_OPTION, [opt.nameOpt, opt.descOpt, opt.codOpt])
-                .then((response) => {
-                const rs = response;
-                if (rs <= 0) {
-                    return res.status(200).json({
-                        status: 'SUCCESS',
-                        message: 'insertado vacio',
-                        data: true
-                    });
-                }
-                else {
-                    return res.status(200).json({
+            try {
+                const opt = req.body;
+                const rs = yield optionValueDao_1.default.insert(opt);
+                if (rs) {
+                    res.status(200).json({
                         status: 'SUCCESS',
                         message: 'insertado correctamente ',
                         data: true
                     });
                 }
-            })
-                .catch((err) => {
+            }
+            catch (err) {
                 console.log(err);
-                return res.status(500).json({
+                res.status(500).json({
                     status: 'FAIL',
-                    message: 'error respuesta servidor no insertado',
+                    message: err.toString(),
                     data: false
                 });
-            })
-                .finally(() => {
-                console.log('cerrar poool');
-                //pool.end()
-            });
+            }
         });
     }
     update(req, res) {
@@ -113,7 +102,7 @@ class OptionController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id } = req.params;
-                const r = yield optionDao_1.default.delete(+id);
+                const r = yield optionValueDao_1.default.delete(+id);
                 if (r) {
                     res.json({
                         status: 'SUCCESS',
@@ -140,5 +129,5 @@ class OptionController {
         });
     }
 }
-const optionController = new OptionController;
-exports.default = optionController;
+const optionValueController = new OptionValueController;
+exports.default = optionValueController;

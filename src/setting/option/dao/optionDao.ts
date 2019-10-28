@@ -4,6 +4,7 @@ import { Query } from '../../../query/query';
 
 class OptionDao {
 
+ 
     public async listAllOption(): Promise<any> {
         console.log('entra a listAllOption dao');
         try {
@@ -21,6 +22,7 @@ class OptionDao {
                 });               
         } catch (err) {           
             console.log(err);
+            throw err;
         }
         console.log(list);
         return list;

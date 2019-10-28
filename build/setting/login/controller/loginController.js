@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../../database"));
 const query_1 = require("../../../query/query");
+const loginDao_1 = __importDefault(require("../dao/loginDao"));
 require('../../configConstants');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
@@ -24,7 +25,7 @@ class LoginController {
             const passEncode = body.pass;
             console.log(body);
             yield database_1.default.query(query_1.Query.LOGIN_USER_PASSWORD, [body.identUser, passEncode])
-                .then((response) => {
+                .then((response) => __awaiter(this, void 0, void 0, function* () {
                 // console.log('response: ',response);
                 const rs = response.rows;
                 console.log(rs);
@@ -37,12 +38,14 @@ class LoginController {
                     });
                 }
                 else {
+                    const lstInstitutions = yield loginDao_1.default.listEnterpriseByIdUser(rs[0].id_user);
                     const user = {
                         idUser: rs[0].id_user,
                         idSpeciality: rs[0].id_speciality,
                         nameUser: rs[0].name_user,
                         lastNameUser: rs[0].last_name_user,
-                        identUser: rs[0].ident_user
+                        identUser: rs[0].ident_user,
+                        lstInstitutions: lstInstitutions
                     };
                     const token = jwt.sign({ data: user }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
                     return res.status(200).json({
@@ -52,7 +55,7 @@ class LoginController {
                         token: token
                     });
                 }
-            })
+            }))
                 .catch((err) => {
                 console.log(err);
                 return res.status(500).json({
@@ -68,22 +71,8 @@ class LoginController {
             });
         });
     }
-    connectionDb() {
-        console.log('entra a conection base de datos');
-        database_1.default.query(query_1.Query.SELECT_CONFIG_PARAM, [1])
-            .then((response) => {
-            console.log(response.rows);
-            const list = response.rows;
-            var arreglado = list.map((item) => {
-                return { idConfigurationParam: item.id_configuration_param, idEnterprise: item.id_enterprise };
-            });
-            console.log(arreglado);
-        })
-            .catch((err) => {
-            console.log(err);
-        })
-            .finally(() => {
-            // pool.end()
+    verifyTokenAndSection(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
         });
     }
 }

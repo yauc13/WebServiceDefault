@@ -28,6 +28,40 @@ class OptionController {
     }
 
     
+    public async listAllOptionStatic(req: Request, res: Response): Promise<any> {
+        console.log('entra a listAllOption');
+        try {
+            const list = [
+                {
+                    "idOpt": 1,
+                    "nameOpt": "Genero",
+                    "descOpt": "sexo biologico",
+                    "codOpt": "cod-sexo"
+                },
+                {
+                    "idOpt": 6,
+                    "nameOpt": "Zona",
+                    "descOpt": "desc zona",
+                    "codOpt": "ZONE"
+                }
+            ]
+            res.status(200).json({
+                status: 'success',
+                message : 'lista ',
+                data: list
+            });
+        } catch (error) {
+            console.log('exception controller')
+            console.log(error.toString())
+            res.status(500).json({
+                status: 'FAIL',
+                message: error.toString(),
+                data: null
+            });
+        }    
+    }
+
+    
     public async insert(req: Request, res: Response): Promise<any> {
         console.log('entra a insert', req.body);
         const opt = req.body;

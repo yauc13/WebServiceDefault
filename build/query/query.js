@@ -18,3 +18,4 @@ Query.INSERT_OPTION_VALUE = 'INSERT INTO main_schema.system_option_value(id_opt,
 Query.UPDATE_OPTION_VALUE = 'UPDATE main_schema.system_option_value SET  name_opt_val=$1, desc_opt_val=$2, state_opt_val=$3, cod_opt_val=$4 WHERE id_opt_val=$5;';
 Query.DELETE_OPTION_VALUE = 'DELETE FROM main_schema.system_option_value WHERE id_opt_val=$1;';
 exports.Query = Query;
+//# sourceMappingURL=query.js.map

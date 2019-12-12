@@ -10,4 +10,5 @@ process.env.CADUCIDAD_TOKEN = (60 * 60 * 24 * 30) + '';
  * semilla SEED de autenticacion
  */
 process.env.SEED = process.env.SEED || 'seed-server';
-process.env.API_URL = '/abatonWebService/apiRest';
+process.env.API_URL = '/api';
+//# sourceMappingURL=configConstants.js.map

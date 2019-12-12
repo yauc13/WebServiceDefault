@@ -11,3 +11,4 @@ const app = express();
 app.use(process.env.API_URL + '/login', loginRoute_1.default);
 app.use(process.env.API_URL + '/option', optionRoute_1.default);
 module.exports = app;
+//# sourceMappingURL=generalRoutes.js.map

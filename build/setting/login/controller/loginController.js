@@ -78,3 +78,4 @@ class LoginController {
 }
 const loginController = new LoginController;
 exports.default = loginController;
+//# sourceMappingURL=loginController.js.map

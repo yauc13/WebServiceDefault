@@ -10,3 +10,4 @@ const pg = require('pg');
 const keyDb_1 = __importDefault(require("./keyDb"));
 const pool = pg.Pool(keyDb_1.default.keyDbPostgres);
 exports.default = pool;
+//# sourceMappingURL=database.js.map

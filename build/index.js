@@ -26,3 +26,4 @@ class Server {
 }
 const ser = new Server();
 ser.star();
+//# sourceMappingURL=index.js.map

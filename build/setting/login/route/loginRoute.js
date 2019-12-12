@@ -16,3 +16,4 @@ class LoginRoutes {
     }
 }
 exports.default = new LoginRoutes().router;
+//# sourceMappingURL=loginRoute.js.map

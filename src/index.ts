@@ -1,5 +1,5 @@
-
-import express, {Application, application} from 'express';
+const express = require('express');
+import  {Application} from 'express';
 
 class Server{
  
@@ -19,9 +19,7 @@ class Server{
     }
 
     routes():void{    
-        this.app.get("/", (req, res) => {
-            res.json({'ok': true, 'data':'pagina index'}).end();
-        });     
+             
         this.app.use(require('./generalRoutes'));
     }
     

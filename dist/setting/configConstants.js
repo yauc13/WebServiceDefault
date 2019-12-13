@@ -1,4 +1,3 @@
-"use strict";
 /**
  * seccion para variables de entorno
  */
@@ -10,5 +9,5 @@ process.env.CADUCIDAD_TOKEN = (60 * 60 * 24 * 30) + '';
  * semilla SEED de autenticacion
  */
 process.env.SEED = process.env.SEED || 'seed-server';
-process.env.API_URL = '/api';
+process.env.API_URL = '';
 //# sourceMappingURL=configConstants.js.map

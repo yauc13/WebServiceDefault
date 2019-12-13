@@ -8,13 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../../database"));
+const database_1 = require("../../database");
 const query_1 = require("../../../query/query");
-const optionValueDao_1 = __importDefault(require("../dao/optionValueDao"));
+const optionValueDao_1 = require("../dao/optionValueDao");
 class OptionValueController {
     listAllOption(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

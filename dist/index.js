@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require('express');
+const express = require("express");
 class Server {
     constructor() {
         this.app = express();

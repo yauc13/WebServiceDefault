@@ -9,8 +9,7 @@ class OptionRoutes {
         this.config();
     }
 
-    config() { 
-        this.router.get('', optionController.listAllOptionStatic);       
+    config() {        
         this.router.get('/listOption', optionController.listAllOptionStatic);
         this.router.post('/option', optionController.insert);
         this.router.put('/option', optionController.update);

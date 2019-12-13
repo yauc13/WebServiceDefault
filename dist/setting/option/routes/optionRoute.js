@@ -8,7 +8,6 @@ class OptionRoutes {
         this.config();
     }
     config() {
-        this.router.get('', optionController_1.default.listAllOptionStatic);
         this.router.get('/listOption', optionController_1.default.listAllOptionStatic);
         this.router.post('/option', optionController_1.default.insert);
         this.router.put('/option', optionController_1.default.update);

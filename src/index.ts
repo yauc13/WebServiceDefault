@@ -1,5 +1,5 @@
-const express = require('express');
-import  {Application} from 'express';
+import express = require('express');
+import  {Application, application} from 'express';
 
 class Server{
  
@@ -18,8 +18,7 @@ class Server{
         this.app.use(express.urlencoded({extended: false})); //parse application/x-www-form-urlencoded
     }
 
-    routes():void{    
-             
+    routes():void{         
         this.app.use(require('./generalRoutes'));
     }
     

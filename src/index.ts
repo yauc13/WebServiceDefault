@@ -18,7 +18,10 @@ class Server{
         this.app.use(express.urlencoded({extended: false})); //parse application/x-www-form-urlencoded
     }
 
-    routes():void{         
+    routes():void{    
+        this.app.get("/", (req, res) => {
+            res.json({'ok': true, 'data':'pagina index'}).end();
+        });     
         this.app.use(require('./generalRoutes'));
     }
     

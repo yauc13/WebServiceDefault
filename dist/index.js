@@ -17,6 +17,9 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false })); //parse application/x-www-form-urlencoded
     }
     routes() {
+        this.app.get("/", (req, res) => {
+            res.json({ 'ok': true, 'data': 'pagina index' }).end();
+        });
         this.app.use(require('./generalRoutes'));
     }
     star() {

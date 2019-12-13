@@ -2,11 +2,16 @@
   "name": "WebServiceDefault",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -w",
-    "dev": "nodemon build/index.js",
-    "start": "node build/index.js"
+    "ts:watch": "tsc -w",
+    "ts:build": "tsc",
+    "serve": "nodemon dist/index.js",
+    "watch": "concurrently \"npm run ts:watch\" \"npm run serve\"",
+    "build": "npm run ts:build",
+    "prod:serve": "node dist/server.js",
+    "start": "npm run build && npm run prod:serve",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "keywords": [],
   "author": "",

@@ -29,7 +29,7 @@ class OptionController {
 
     
     public async listAllOptionStatic(req: Request, res: Response): Promise<any> {
-        console.log('entra a listAllOption');
+       
         try {
             const list = [
                 {
